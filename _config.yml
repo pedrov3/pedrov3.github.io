@@ -101,4 +101,6 @@ remote_theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/pedrov3/pedrov3.github.io
+  branch: main
