@@ -97,10 +97,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: jekyll-theme-next
-remote_theme: next
-# Deployment
+theme: next
+
+  # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/pedrov3/pedrov3.github.io
-  branch: main
