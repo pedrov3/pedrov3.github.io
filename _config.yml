@@ -7,7 +7,7 @@ title: Hexo
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author:  Pedro Vinicius Sousa da Silva
 language: pt-BR
 timezone: ''
 
@@ -95,9 +95,21 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins: hexo-tag-katex
 ## Themes: https://hexo.io/themes/
-#theme: jekyll-theme-next
-remote_theme: theme-next/hexo-theme-next
+theme: next
+#remote_theme: theme-next/hexo-theme-next
+
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
 
   # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  repo: git@github.com:pedrov3/pedrov3.github.io.git
+  branch: master
