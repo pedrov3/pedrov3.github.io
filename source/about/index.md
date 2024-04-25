@@ -1,14 +1,13 @@
 ---
 layout: page
 type: about
-title: "Introdução"
+title: "Informações"
 ---
 
 ### Educação
-* **2019 - 2023 Bacharelado em Ciência da Computação - Universidade Federal do Paraná**
+* (2019 - 2023) Bacharelado em Ciência da Computação - Universidade Federal do Paraná
 
   
-
 ### Participação em competições/prêmios
 * The 2023 ICPC South America/Brazil Finals
 
@@ -17,8 +16,6 @@ title: "Introdução"
 * 1ª Maratona de Programação do Sul (3º Lugar)
 
 * [ICPCID - Pedro Vinicius Sousa da Silva](https://icpc.global/ICPCID/5WB4P1MU8Z9D)
-
-  
 
 
 ### Atividades educacionais
