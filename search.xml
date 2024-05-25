@@ -3,7 +3,10 @@
   <entry>
     <title>Resumo: Recorrências lineares</title>
     <url>/2024/05/24/Resumo-Recorrencias-lineares/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="Polinomio-caracteristico"><a href="#Polinomio-caracteristico" class="headerlink" title="Polinômio característico"></a>Polinômio característico</h2><p>Uma recorrência linear na forma:</p>
+    <content><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema <a href="https://judge.beecrowd.com/pt/problems/view/3413">BEE 3413 - Baita Desafio Complexo - Beecrowd</a> do contest da <a href="https://judge.beecrowd.com/pt/problems/origin/216">1ª Fase Zero da Maratona de Programação da SBC 2022&#x2F;2023</a>.</p>
+<span id="more"></span>
+
+<h2 id="Polinomio-caracteristico"><a href="#Polinomio-caracteristico" class="headerlink" title="Polinômio característico"></a>Polinômio característico</h2><p>Uma recorrência linear na forma:</p>
 <p>$f(n) &#x3D; a_1 \cdot f(n-1) + a_2 \cdot f(n-2) + \cdots + a_k \cdot f(n - k)$</p>
 <p>tem o seguinte polinômio característico:</p>
 <p>$X^k &#x3D; a_1 \cdot X^{k-1} + a_2 \cdot X^{k-2} + \cdots + a_{k-1} \cdot X^1 + a_k \cdot X^0$</p>

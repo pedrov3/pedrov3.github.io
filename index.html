@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"pedrov3.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Pesquisando...","empty":"Não encontramos nenhum resultado para a pesquisa: ${query}","hits_time":"${hits} resultados encontrados em ${time} ms","hits":"${hits} resultados encontrados"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pedrov3.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Pesquisando...","empty":"Não encontramos nenhum resultado para a pesquisa: ${query}","hits_time":"${hits} resultados encontrados em ${time} ms","hits":"${hits} resultados encontrados"}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="...">
@@ -199,7 +199,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Editado em</span>
-      <time title="Modificado em: 2024-05-25 00:38:44" itemprop="dateModified" datetime="2024-05-25T00:38:44-03:00">2024-05-25</time>
+      <time title="Modificado em: 2024-05-25 01:08:24" itemprop="dateModified" datetime="2024-05-25T01:08:24-03:00">2024-05-25</time>
     </span>
 
   
@@ -212,68 +212,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="Polinomio-caracteristico"><a href="#Polinomio-caracteristico" class="headerlink" title="Polinômio característico"></a>Polinômio característico</h2><p>Uma recorrência linear na forma:</p>
-<p>$f(n) &#x3D; a_1 \cdot f(n-1) + a_2 \cdot f(n-2) + \cdots + a_k \cdot f(n - k)$</p>
-<p>tem o seguinte polinômio característico:</p>
-<p>$X^k &#x3D; a_1 \cdot X^{k-1} + a_2 \cdot X^{k-2} + \cdots + a_{k-1} \cdot X^1 + a_k \cdot X^0$</p>
-<h2 id="Formula-fechada"><a href="#Formula-fechada" class="headerlink" title="Fórmula fechada"></a>Fórmula fechada</h2><p>Dado uma recorrência linear com polinômio característico igual a:</p>
-<p>$(X - r_1)(X - r_1)(X - r_2)(X - r_3) &#x3D; 0$</p>
-<p>tem fórmula fechada na forma:</p>
-<p>$f(n) &#x3D; c_1 \cdot r_1^n + c_2 \cdot n \cdot r_1^n + c_3 \cdot r_2^n + c_4 \cdot r_3^n $</p>
-<h2 id="Truque-da-soma-acumulada-de-Fibonacci"><a href="#Truque-da-soma-acumulada-de-Fibonacci" class="headerlink" title="Truque da soma acumulada de Fibonacci"></a>Truque da soma acumulada de Fibonacci</h2><p>Seja  $ f(n) &#x3D; \begin{cases}  n, &amp; \text{se  $n \le 1$}\\  f(n-1) + f(n-2), &amp; \text{caso contrário} \end{cases}$</p>
-<p>A partir do fato que $f(n-2) &#x3D; f(n) - f(n-1)$ é o mesmo que $f(n) &#x3D; f(n + 2) - f(n+1)$</p>
-<p>Podemos calcular $s(n) &#x3D; f(0) + f(1) + \dots + f(n)$, através da seguinte soma telescópica:</p>
-<p>$f(0) &#x3D; f(2) - f(1)$</p>
-<p>$f(1) &#x3D; f(3) - f(2)$</p>
-<p>$f(2) &#x3D; f(4) - f(3)$​</p>
-<p>​              $\cdots$</p>
-<p>$f(n-1) &#x3D; f(n+1) - f(n)$</p>
-<p>$f(n) &#x3D; f(n+2) - f(n+1)$</p>
-<p>Somando essas igualdades temos:</p>
-<p>$f(0) + f(1) + \cdots + f(n-1) + f(n) &#x3D; \Big(f(2) - f(1)\Big) + \Big(f(3) - f(2)\Big)  + \cdots + \Big( f(n+1) - f(n) \Big) + \Big( f(n+2) - f(n+1)\Big)$</p>
-<p>$s(n) &#x3D; -f(1) + f(n+2)$</p>
-<p>$s(n) &#x3D; f(n + 2) - f(1)$</p>
-<h2 id="Problemas-para-praticar"><a href="#Problemas-para-praticar" class="headerlink" title="Problemas para praticar"></a>Problemas para praticar</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/view/3413">BEE 3413 - Baita Desafio Complexo - Beecrowd</a></li>
-</ul>
-<h3 id="Solucao"><a href="#Solucao" class="headerlink" title="Solução:"></a><strong>Solução:</strong></h3><p>Em resumo, nesse problema a parte principal de sua solução é aplicar os truques (1) e (2) ao contrário, ou seja, a partir de uma fórmula fechada encontrar a recorrência linear correspondente, uma vez que temos essa recorrência linear podemos computá-la em um ponto específico rapidamente usando exponenciação de matrizes (usando exponenciação binária) e para computar sua soma acumulada arrematamos o problema usando o truque (3). A seguir uma descrição mais detalhada.</p>
-<p>A partir do truque (2) podemos notar que $f(n)$ do problema tem o formato de uma recorrência linear igual a:</p>
-<p>$f(n) &#x3D; c_1 \cdot {\Big(\dfrac{1 + R}{2}\Big)}^n +  c_2 \cdot {\Big(\dfrac{1 - R}{2}\Big)}^n$</p>
-<p>que por sua vez tem polinômio característico igual:</p>
-<p>$\Big(X - \Big(\dfrac{1 + R}{2}\Big)\Big)\Big(X - \Big(\dfrac{1 - R}{2}\Big)\Big) &#x3D; 0$</p>
-<p>expandindo essa equação temos:</p>
-<p>$ \Big(X - \Big(\dfrac{1 + R}{2}\Big)\Big)\Big(X - \Big(\dfrac{1 - R}{2}\Big)\Big) &#x3D; X^2 - X \Big(\dfrac{1 - R}{2}\Big) - \Big(\dfrac{1 + R}{2}\Big) X  + \Big(\dfrac{1 + R}{2}\Big) \Big(\dfrac{1 - R}{2}\Big) &#x3D; $</p>
-<p>$&#x3D; X^2 - X\Big(\dfrac{1 - R + 1 + R}{2}\Big) + \dfrac{1 - R^2}{4} &#x3D; X^2 - X + \dfrac{1 - (i\cdot\sqrt{4T - 1})^2}{4} &#x3D; X^2 - X  + \dfrac{1 -(-1 \cdot (4T - 1))}{4} &#x3D; $</p>
-<p>$&#x3D; X^2 - X + T &#x3D; 0$</p>
-<p>que colocando no formato $X^2 &#x3D; X^1 - T \cdot X^0$ evidencia que podemos aplicar o truque (1) para descobrir que $f(n)$ tem a forma:</p>
-<p>$f(n) &#x3D; f(n - 1) - T \cdot f(n - 2)$</p>
-<p>Para nossa instância podemos verificar que $f(0) &#x3D; 0$ e $f(1) &#x3D; 1$, desse modo temos que $f(n)$ como descrito no enunciado é o mesmo que:</p>
-<p>$f(n) &#x3D; \begin{cases} n , &amp; \text{se } n \le 1\\ f(n - 1) - T \cdot f(n - 2), &amp; \text{caso contrário}\end{cases}$</p>
-<p>que pode ser computada através da seguinte transformação linear em $O(\log{n})$ usando exponenciação binária:</p>
-<p>$ \begin{bmatrix}<br>f(n) \\<br>f(n-1)<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br>1 &amp; -T \\<br>1 &amp; 0<br>\end{bmatrix} \begin{bmatrix}<br>f(n-1)  \\<br>f(n-2)<br>\end{bmatrix}$</p>
-<p>$ \begin{bmatrix}<br>f(n) \\<br>f(n-1)<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br>1 &amp; -T \\<br>1 &amp; 0<br>\end{bmatrix}^{n-1} \begin{bmatrix}<br>f(1)  \\<br>f(0)<br>\end{bmatrix}, \text{onde } n \ge 2$</p>
-<p>Por fim, para computar $s(n) &#x3D; f(0) + f(1) + \dots + f(n)$ podemos aplicar o truque (3) da seguinte maneira:</p>
-<p>A partir do fato que $-T \cdot f(n-2) &#x3D; f(n) - f(n-1)$ é o mesmo que $-T \cdot f(n) &#x3D; f(n + 2) - f(n+1)$</p>
-<p>Podemos encontrar $s(n)$ através da seguinte soma telescópica:</p>
-<p>$-T \cdot f(0) &#x3D; f(2) - f(1)$</p>
-<p>$-T \cdot f(1) &#x3D; f(3) - f(2)$</p>
-<p>$-T \cdot f(2) &#x3D; f(4) - f(3)$</p>
-<p>​              $\cdots$</p>
-<p>$-T \cdot f(n-1) &#x3D; f(n+1) - f(n)$</p>
-<p>$-T \cdot f(n) &#x3D; f(n+2) - f(n+1)$</p>
-<p>Somando essas igualdades temos:</p>
-<p>$-T \cdot \Big(f(0) + f(1) + \cdots + f(n-1) + f(n) \Big) &#x3D; \Big(f(2) - f(1)\Big) + \Big(f(3) - f(2)\Big)  + \cdots + \Big( f(n+1) - f(n) \Big) + \Big( f(n+2) - f(n+1)\Big)$</p>
-<p>$-T \cdot s(n) &#x3D; -f(1) + f(n+2)$</p>
-<p>$s(n) &#x3D; \dfrac{f(n + 2) - f(1)}{-T}$</p>
-<p>$\blacksquare$</p>
-<h4 id="Codigo"><a href="#Codigo" class="headerlink" title="Código"></a>Código</h4><p>A seguir o código do problema, omitindo o código da <a target="_blank" rel="noopener" href="https://github.com/pedrov3/competitive-programming-notebook/blob/main/expmatrix.cpp">exponenciação de matrizes</a>, <a target="_blank" rel="noopener" href="https://github.com/pedrov3/competitive-programming-notebook/blob/main/expbin.cpp">exponenciação binária</a> e o restante do <a target="_blank" rel="noopener" href="https://github.com/pedrov3/competitive-programming-notebook/blob/main/templates/cpp.cpp">template</a>.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>)-&gt;<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> t, m;</span><br><span class="line">    cin &gt;&gt; t &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> f = [&amp;](<span class="type">int</span> n)&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="function">Matrix <span class="title">base</span><span class="params">(&#123;&#123;<span class="number">1</span>, -t&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;&#125;)</span></span>;</span><br><span class="line">        <span class="keyword">auto</span> retval = <span class="built_in">expbin</span>(base, n - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> retval[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> s = [&amp;](<span class="type">int</span> n)&#123;</span><br><span class="line">        <span class="comment">// inverso modular através do &#x27;Fermat&#x27;s little theorem&#x27;;</span></span><br><span class="line">        <span class="built_in">return</span> (<span class="built_in">f</span>(n + <span class="number">2</span>) - <span class="built_in">f</span>(<span class="number">1</span>)) * <span class="built_in">expbin</span>(-t, P - <span class="number">2</span>) </span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function">vi <span class="title">a</span><span class="params">(m)</span></span>;</span><br><span class="line">    cin &gt;&gt; a;</span><br><span class="line">    <span class="type">int</span> l = *<span class="built_in">max_element</span>(<span class="built_in">all</span>(a));</span><br><span class="line">    <span class="type">int</span> ans = <span class="built_in">s</span>(l);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x: a)&#123;</span><br><span class="line">        ans -= <span class="built_in">f</span>(x);</span><br><span class="line">        ans %= P;</span><br><span class="line">        ans += P;</span><br><span class="line">        ans %= P;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Referencias"><a href="#Referencias" class="headerlink" title="Referências"></a>Referências</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://pessoal.dainf.ct.utfpr.edu.br/zatesko/icsd21.html#:~:text=AULA%206%3A%20Recorr%C3%AAncias%20lineares">Notas de aula de recorrências lineares do Profº Leandro Zatesko</a></li>
-<li><a target="_blank" rel="noopener" href="https://youtu.be/C1uwYwjYqdE?si=5NTejm-K9_rcsE3L&t=10787">Oficina {28set,9nov}22: Upsolving da 1ª Fase Zero da Maratona de Programação da SBC - A partir de 2 hr 59 min 47 seg</a></li>
-</ul>
-
+          <p>Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema <a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/view/3413">BEE 3413 - Baita Desafio Complexo - Beecrowd</a> do contest da <a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/origin/216">1ª Fase Zero da Maratona de Programação da SBC 2022&#x2F;2023</a>.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/05/24/Resumo-Recorrencias-lineares/#more" rel="contents">
+                Leia mais &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
