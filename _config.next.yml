@@ -155,7 +155,8 @@ site_state: true
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
   GitHub: https://github.com/pedrov3 || fab fa-github
-  E-Mail: pedroestouaqui@gmail.com || fa fa-envelope
+  Telegram: https://t.me/meu_nome || fab fa-telegram
+  E-Mail: mailto:pedroestouaqui@gmail.com || fa fa-envelope
   #TODO: YouTube: https://youtube.com/yourname || fab fa-youtube
   #Weibo: https://weibo.com/yourname || fab fa-weibo
   #Twitter: https://twitter.com/yourname || fab fa-twitter
@@ -278,7 +279,7 @@ reward:
 # Usage: `Key: permalink || icon` (Font Awesome)
 follow_me:
   #Twitter: https://twitter.com/username || fab fa-twitter
-  #Telegram: https://t.me/channel_name || fab fa-telegram
+  #Telegram: https://t.me/meu_nome || fab fa-telegram
   #WeChat: /images/wechat_channel.png || fab fa-weixin
   #RSS: /atom.xml || fa fa-rss
 
@@ -361,8 +362,8 @@ codeblock:
   # Code Highlight theme
   # All available themes: https://theme-next.js.org/highlight/
   theme:
-    light: default
-    dark: stackoverflow-dark
+    light: monokai-sublime
+    dark: monokai-sublime
   prism:
     light: prism
     dark: prism-dark
@@ -557,7 +558,7 @@ math:
     tags: all
 
   katex:
-    enable: true
+    enable: false
     # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
     copy_tex: false
 
