@@ -4,6 +4,10 @@ date: 2024-05-24 23:37:02
 tags:
 ---
 
+Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema [BEE 3413 - Baita Desafio Complexo - Beecrowd](https://judge.beecrowd.com/pt/problems/view/3413) do contest da [1ª Fase Zero da Maratona de Programação da SBC 2022/2023](https://judge.beecrowd.com/pt/problems/origin/216).
+
+<!-- more -->
+
 ## Polinômio característico
 
 Uma recorrência linear na forma:
@@ -13,6 +17,7 @@ $f(n) = a_1 \cdot f(n-1) + a_2 \cdot f(n-2) + \cdots + a_k \cdot f(n - k)$
 tem o seguinte polinômio característico:
 
 $X^k = a_1 \cdot X^{k-1} + a_2 \cdot X^{k-2} + \cdots + a_{k-1} \cdot X^1 + a_k \cdot X^0$
+
 
 ## Fórmula fechada
 
