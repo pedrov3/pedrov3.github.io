@@ -69,4 +69,29 @@
 </ul>
 ]]></content>
   </entry>
+  <entry>
+    <title>E - Guess the Sum - ABC355</title>
+    <url>/2024/05/31/abc355e/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>O texto a seguir é uma tradução para português (com adições)  do <a href="https://atcoder.jp/contests/abc355/editorial/10079">editorial</a> do problema <a href="https://atcoder.jp/contests/abc355/tasks/abc355_e">ABC355 - E - Guess the sum</a> que até o momento não foi traduzido.</p>
+<span id="more"></span>
+
+<p>Inicialmente se você já tiver visto o problema <a href="https://atcoder.jp/contests/abc349/tasks/abc349_d">D - Divide Interval - ABC349</a> pode notar sua semelhança, principalmente pois o intervalo em que você pode fazer perguntas é igual uma árvore de segmentos. A diferença deste problema é que você pode subtrair, o que permite dividir o intervalo de consulta em um número menor de sub-intervalos. Por exemplo, para $N&#x3D;3, L&#x3D;1,R&#x3D;7$, se você dividir o intervalo de perguntas usando a solução do problema <a href="https://atcoder.jp/contests/abc349/tasks/abc349_d">ABC349D</a>, precisará fazer três perguntas: $A_1$, $A_2 + A_3$ e $A_4 + A_5 + A_6 + A_7$ . Por outro lado, poderíamos com apenas duas consultas obter a resposta, primeiro fazemos $A_0 + A_1 + A_2 + A_3 + A_4 + A_5 + A_6 + A_7$ e depois subtraímos $A_0$ para obter a resposta.</p>
+<p>Deste modo, neste problema precisamos construir uma outra solução. A solução descrita a seguir é baseada no vetor de soma acumulada (soma de prefixo).</p>
+<p>Para $l, r$ $(0 \le l, r \le 2^N)$ inteiros, defina $S(l,r)$​​​​ como:</p>
+<p>$S(l, r) &#x3D; \begin{cases} 0, &amp; (l &#x3D; r)\ \sum\limits_{i&#x3D;x}^{y-1}A_i, &amp; (l &lt; r)\ -S(r, l) &amp; (l &gt; r) \end{cases}$</p>
+<p>O que queremos é $S(L,R+1)$, restringido a realizar perguntas para $S(l, r)$ que seguem o formato $S(2^ij, 2^i(j + 1))$. Note que como pela definição anterior $S(l, r)$ está definido mesmo quando $l &gt; r$, temos que $S(2^i(j+1), 2^ij) &#x3D; -S(2^ij, 2^i(j + 1))$, como esta última é uma consulta válida, podemos assumir que $S(2^i(j + 1), 2 ^i j )$ também é uma pergunta válida.</p>
+<p>A partir da definição de $S$, é possível verificar que $S(x, y)$ possui a propriedade transitiva, ou seja, se $S(x, y)$ e $S(y, z)$ são conhecidos, então $S(x, z)$ pode ser encontrado como $S(x, y) + S(y, z)$​.</p>
+<p>Fazendo uso dessa propriedade podemos pensar em um grafo definido a partir de $S$. Note que um caminho de $u, v$ neste grafo irá representar $S(u, v)$. Formalmente,  seja $G$ um grafo direcionado onde $V(G) &#x3D; {0, 1, \dots, 2^N}$ e existe uma aresta $(u, v)$ se é possível realizar uma consulta de $u$ pra $v$ ou de $v$ para $u$.</p>
+<p>Agora, considere dois vértices $u, v$ cuja distância mínima em $G$ é 2, $S(u, v)$ pode ser obtido através de duas perguntas. Seja $(u, w, v)$ um caminho mínimo de $u$ para $v$,  $S(u, v) &#x3D; S(u, w) + S(w, v)$, note que como existe uma aresta de $(u, w)$ e de $(w, v)$, ambas $S(u, w)$ e $S(w, v)$ são consultas válidas.</p>
+<p>De forma geral, dados dois vértices $u, v$ cuja distância mínima em $G$ é igual a $d$, $S(u, v)$ pode ser encontrado fazendo exatamente $d$ perguntas.</p>
+<p>Portanto, é suficiente encontrar o caminho mais curto de $L$ a $R$ no grafo G (com restauração). Como o número de vértices do grafo $G$ é $2^N + 1$ e o número de arestas é $2^{N + 1} - 1$, o caminho mais curto pode ser encontrado com uma complexidade computacional de $O (2^{N})$ usando BFS .</p>
+<h2 id="Referencias"><a href="#Referencias" class="headerlink" title="Referências"></a>Referências</h2><ul>
+<li><a href="https://atcoder.jp/contests/abc355/editorial/10079">E - Guess the Sum Editorial by toam</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>BFS</tag>
+        <tag>Soma de prefixo</tag>
+      </tags>
+  </entry>
 </search>
