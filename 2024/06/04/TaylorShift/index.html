@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pedrov3.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Pesquisando...","empty":"Não encontramos nenhum resultado para a pesquisa: ${query}","hits_time":"${hits} resultados encontrados em ${time} ms","hits":"${hits} resultados encontrados"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Este artigo é uma breve explicação de uma técnica conhecida como Deslocamento de Taylor (Polynomial Taylor Shift), esta técnica é usada para essencialmente resolver o problema de dado um polinômio $f(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deslocamento de Taylor">
+<meta property="og:url" content="https://pedrov3.github.io/2024/06/04/TaylorShift/index.html">
+<meta property="og:site_name" content="...">
+<meta property="og:description" content="Este artigo é uma breve explicação de uma técnica conhecida como Deslocamento de Taylor (Polynomial Taylor Shift), esta técnica é usada para essencialmente resolver o problema de dado um polinômio $f(">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://pedrov3.github.io/figuras/taylor1.jpg">
+<meta property="og:image" content="https://pedrov3.github.io/figuras/taylor2.jpg">
+<meta property="article:published_time" content="2024-06-04T23:04:19.000Z">
+<meta property="article:modified_time" content="2024-06-04T23:30:08.373Z">
+<meta property="article:author" content="Pedro Vinicius Sousa da Silva">
+<meta property="article:tag" content="FFT">
+<meta property="article:tag" content="Matemática">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pedrov3.github.io/figuras/taylor1.jpg">
+
+
+<link rel="canonical" href="https://pedrov3.github.io/2024/06/04/TaylorShift/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"pt-BR","comments":true,"permalink":"https://pedrov3.github.io/2024/06/04/TaylorShift/","path":"2024/06/04/TaylorShift/","title":"Deslocamento de Taylor"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deslocamento de Taylor | ...</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Alternar barra de navegação" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Pesquisar" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>Sobre</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Arquivos</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Índice
+        </li>
+        <li class="sidebar-nav-overview">
+          Visão geral
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-Taylor-Shift"><span class="nav-number">1.</span> <span class="nav-text">Polynomial Taylor Shift</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problema"><span class="nav-number">1.1.</span> <span class="nav-text">Problema</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solucao"><span class="nav-number">1.2.</span> <span class="nav-text">Solução</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Codigo"><span class="nav-number">1.3.</span> <span class="nav-text">Código</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exemplo-de-aplicacao"><span class="nav-number"></span> <span class="nav-text">Exemplo de aplicação</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2023-2024-ICPC-Brazil-Subregional-Programming-Contest-K-K-for-More-K-for-Less"><span class="nav-number">1.</span> <span class="nav-text">2023-2024 ICPC Brazil Subregional Programming Contest K - K for More, K for Less</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problema-1"><span class="nav-number">1.1.</span> <span class="nav-text">Problema</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Explicacao"><span class="nav-number">1.2.</span> <span class="nav-text">Explicação</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Codigo-1"><span class="nav-number">1.3.</span> <span class="nav-text">Código</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Referencias"><span class="nav-number"></span> <span class="nav-text">Referências</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Pedro Vinicius Sousa da Silva</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">publicações</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">etiquetas</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pedrov3" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pedrov3" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/meu_nome" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;meu_nome" rel="noopener" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pedroestouaqui@gmail.com" title="E-Mail → mailto:pedroestouaqui@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="pt-BR">
+    <link itemprop="mainEntityOfPage" href="https://pedrov3.github.io/2024/06/04/TaylorShift/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Pedro Vinicius Sousa da Silva">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Deslocamento de Taylor | ...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deslocamento de Taylor
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Postado em</span>
+      
+
+      <time title="Criado em: 2024-06-04 20:04:19 / Modificado em: 20:30:08" itemprop="dateCreated datePublished" datetime="2024-06-04T20:04:19-03:00">2024-06-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Este artigo é uma breve explicação de uma técnica conhecida como Deslocamento de Taylor (<em>Polynomial Taylor Shift</em>), esta técnica é usada para essencialmente resolver o problema de dado um polinômio $f(x)$ e um inteiro $c$, encontrar um novo polinômio $f(x + c)$.</p>
+<span id="more"></span>
+
+<h2 id="Polynomial-Taylor-Shift"><a href="#Polynomial-Taylor-Shift" class="headerlink" title="Polynomial Taylor Shift"></a><a target="_blank" rel="noopener" href="https://judge.yosupo.jp/problem/polynomial_taylor_shift">Polynomial Taylor Shift</a></h2><h3 id="Problema"><a href="#Problema" class="headerlink" title="Problema"></a>Problema</h3><p>Dada uma sequência $a &#x3D; (a_0, a_1, \cdots, a_{N-1})$ de comprimento $N$ e um inteiro $c$.</p>
+<p>Vamos definir um polinômio $f(x) &#x3D; \sum\limits_{i&#x3D;0}^{N-1} a_i x^i$ de grau $N-1$.</p>
+<p>O objetivo é encontrar uma sequência $b &#x3D; (b_0, b_1, \cdots, b_{N-1})$ que satisfaz $f(x+c) &#x3D; \sum\limits_{i&#x3D;0}^{N-1} b_i x^i$, como os números dessa sequência podem ser grandes, imprima cada um deles módulo $998244353$.</p>
+<p>Limites: $1 \leq N \leq 2^{19} &#x3D; 524288; 0 \leq c,a_i &lt; 998244353$</p>
+<h3 id="Solucao"><a href="#Solucao" class="headerlink" title="Solução"></a>Solução</h3><p>Resumo: ideias diretas como usar a interpolação de Lagrange podem ser otimizadas para resolver esse problema em uma complexidade de tempo $\mathcal{O}(N^2)$, que ainda é insuficiente para os limites estabelecidos. A solução esperada para este problema tem complexidade de tempo $\mathcal{O}(N \log N)$ e consiste na expansão de $f(x+c)$, a partir de $f(x) &#x3D; \sum_{i&#x3D;0}^{N} a_i x^i$, em seguida através de várias manipulações de somatório é possível deixá-la em uma forma computável através de uma convolução entre duas sequências. Uma descrição mais formal é dada em seguida.</p>
+<p>Pelo teorema binomial:</p>
+<p>$(a + b)^n  &#x3D; \sum\limits_{k&#x3D;0}^n\binom{n}{k}a^kb^{n-k}$,</p>
+<p>e pela definição de $f$ podemos expandir $f(x + c)$ no seguinte:</p>
+<p>$f(x+c) &#x3D; \sum\limits_{i&#x3D;0}^{N-1} a_i (x+c)^i &#x3D; \sum\limits_{i&#x3D;0}^{N-1} a_i  \Big( \sum\limits_ { j&#x3D;0}^{i} \binom{i}{j} x^j c^{i-j} \Big) &#x3D; \sum\limits_{i&#x3D;0}^{N-1} \sum\limits_ { j&#x3D;0}^{i} a_i \binom{i}{j} x^j c^{i-j}&#x3D;$</p>
+<p>$ &#x3D; \sum\limits_{i&#x3D;0}^{N-1}\sum\limits_{j&#x3D;0}^{i}a_i \dfrac{i! x^j c^{i-j}}{(i-j)!j!} &#x3D; $</p>
+<p>$ &#x3D; \sum\limits_{j&#x3D;0}^{N-1}\sum\limits_{i&#x3D;j}^{N-1}a_i \dfrac{i! x^j c^{i-j}}{(i-j)!j!} &#x3D; $ (Justificativa ilustrada nas Figuras 1 e 2).</p>
+<p>$ &#x3D; \sum\limits_{j&#x3D;0}^{N-1} \dfrac{x^j}{j!} \sum\limits_{i&#x3D;j}^{N-1}a_i \dfrac{i! c^{i - j}}{(i-j)!}$</p>
+<p>Este somatório interno pode ser resolvido usando FFT, a explicação segue:</p>
+<p>Queremos encontrar $C_j &#x3D; \sum\limits_{i&#x3D;j}^{N-1}a_i \dfrac{i! c^{i - j}}{(i-j)!}$ para  $0 \le j \le N-1$.</p>
+<p>Para isso seja $A_i &#x3D; a_i \cdot i!$, $B_i &#x3D; \dfrac{c^i}{i!}$</p>
+<p>Podemos reescrever $C_j$ como:</p>
+<p>$ C_j &#x3D; \sum\limits_{i&#x3D;j}^{N-1}a_i \dfrac{i! c^{i - j}}{(i-j)!} &#x3D; \sum\limits_{i&#x3D;j}^{N-1} A_i B_{i-j} &#x3D; \sum\limits_{i&#x3D;j}^{N-1} \overline{A}‎_{N-i-1} B_{i-j} &#x3D; (\overline{A} * B)‎_{N - j - 1} $</p>
+<p>$\overline{A}$ denota o vetor $A$ revertido (de trás para frente).</p>
+<p>Desse modo, podemos computar o vetor $C$ através de uma convolução entre o vetor $\overline{A}$ e $B$ em $O(N \log N)$ usando FFT e depois usar o vetor $C$ para encontrar a sequência $b$, já que $b_j &#x3D; \frac{C_j}{j!} $​​​.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Figura 1</th>
+<th align="center">Figura 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/../figuras/taylor1.jpg" alt="figura2"></td>
+<td align="center"><img src="/../figuras/taylor2.jpg" alt="figura1"></td>
+</tr>
+</tbody></table>
+<h3 id="Codigo"><a href="#Codigo" class="headerlink" title="Código"></a>Código</h3><p><a target="_blank" rel="noopener" href="https://github.com/atcoder/ac-library/tree/master"><strong>Código de convolução da Biblioteca do Atcoder</strong></a>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;atcoder/all&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> all(x) x.begin(), x.end()</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std; <span class="keyword">using</span> <span class="keyword">namespace</span> atcoder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> mint = modint998244353;</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;mint&gt; <span class="title">taylor_shift</span><span class="params">(vector&lt;mint&gt;&amp; a, <span class="type">int</span> c)</span> </span>&#123;</span><br><span class="line">  <span class="type">int</span> n = a.<span class="built_in">size</span>();</span><br><span class="line">  <span class="function">vector&lt;mint&gt; <span class="title">fat</span><span class="params">(n)</span></span>;</span><br><span class="line">  fat[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">    fat[i] = fat[i - <span class="number">1</span>] * i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function">vector&lt;mint&gt; <span class="title">A</span><span class="params">(n)</span>, <span class="title">B</span><span class="params">(n)</span></span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    A[i] = a[i] * fat[i];</span><br><span class="line">    B[i] = <span class="built_in">mint</span>(c).<span class="built_in">pow</span>(i) / fat[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">reverse</span>(<span class="built_in">all</span>(A));</span><br><span class="line">  <span class="keyword">auto</span> retval = <span class="built_in">convolution</span>(A, B);</span><br><span class="line">  <span class="function">vector&lt;mint&gt; <span class="title">b</span><span class="params">(n)</span></span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    b[i] = retval[n - i - <span class="number">1</span>] / fat[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  cin.<span class="built_in">tie</span>(<span class="number">0</span>)-&gt;<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> n, c;</span><br><span class="line">  cin &gt;&gt; n &gt;&gt; c;</span><br><span class="line">  <span class="function">vector&lt;mint&gt; <span class="title">a</span><span class="params">(n)</span></span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    cin &gt;&gt; x;</span><br><span class="line">    a[i] = x;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; x : <span class="built_in">taylor_shift</span>(a, c)) &#123;</span><br><span class="line">    cout &lt;&lt; x.<span class="built_in">val</span>() &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exemplo-de-aplicacao"><a href="#Exemplo-de-aplicacao" class="headerlink" title="Exemplo de aplicação"></a>Exemplo de aplicação</h1><h2 id="2023-2024-ICPC-Brazil-Subregional-Programming-Contest-K-K-for-More-K-for-Less"><a href="#2023-2024-ICPC-Brazil-Subregional-Programming-Contest-K-K-for-More-K-for-Less" class="headerlink" title="2023-2024 ICPC Brazil Subregional Programming Contest K - K for More, K for Less"></a><a target="_blank" rel="noopener" href="https://codeforces.com/gym/104555/problem/K">2023-2024 ICPC Brazil Subregional Programming Contest K - K for More, K for Less</a></h2><h3 id="Problema-1"><a href="#Problema-1" class="headerlink" title="Problema"></a>Problema</h3><p>Dados dois polinômios $t(x)$ e $p(x)$, o problema é encontrar o polinômio $q(x)$ tal que $q(x) &#x3D; t(x+K) + p(x-K)$ .</p>
+<h3 id="Explicacao"><a href="#Explicacao" class="headerlink" title="Explicação"></a>Explicação</h3><p>Este problema pode ser resolvido diretamente aplicando deslocamento de Taylor para encontrar $t$ e $p$.</p>
+<h3 id="Codigo-1"><a href="#Codigo-1" class="headerlink" title="Código"></a>Código</h3><p>O código excluindo a função <code>taylor_shift</code> é o seguinte.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> mint = modint998244353;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>)-&gt;<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, k;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="function">vector&lt;mint&gt; <span class="title">t</span><span class="params">(n + <span class="number">1</span>)</span>, <span class="title">p</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i &lt; n + <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="type">int</span> x;</span><br><span class="line">        cin &gt;&gt; x, t[i] = x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i &lt; n + <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="type">int</span> x;</span><br><span class="line">        cin &gt;&gt; x, p[i] = x;</span><br><span class="line">    &#125;</span><br><span class="line">    f = <span class="built_in">taylor_shift</span>(t, k);</span><br><span class="line">    p = <span class="built_in">taylor_shift</span>(p, -k);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i &lt; n + <span class="number">1</span>; i++)&#123;</span><br><span class="line">        cout &lt;&lt; (f[i] + p[i]).<span class="built_in">val</span>() &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Referencias"><a href="#Referencias" class="headerlink" title="Referências"></a>Referências</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://infossm.github.io/blog/2023/11/26/taylor-shift/">Taylor Shift, Sampling Points Shift</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FFT/" rel="tag"># FFT</a>
+              <a href="/tags/Matematica/" rel="tag"># Matemática</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/05/31/abc355e/" rel="prev" title="AtCoder ABC 355 E - Guess the Sum">
+                  <i class="fa fa-chevron-left"></i> AtCoder ABC 355 E - Guess the Sum
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pedro Vinicius Sousa da Silva</span>
+</div>
+  <div class="powered-by">Feito com <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
