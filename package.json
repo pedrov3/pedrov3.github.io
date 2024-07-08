@@ -28,6 +28,6 @@
     "hexo-server": "^3.0.0",
     "hexo-tag-katex": "^1.1.1",
     "hexo-theme-landscape": "^1.0.0",
-    "highlight.js": "^11.9.0"
+    "highlight.js": "^11.10.0"
   }
 }
