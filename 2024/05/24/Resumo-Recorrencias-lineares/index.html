@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"pedrov3.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"monokai-sublime","dark":"monokai-sublime"},"prism":{"light":"darcula","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Pesquisando...","empty":"Não encontramos nenhum resultado para a pesquisa: ${query}","hits_time":"${hits} resultados encontrados em ${time} ms","hits":"${hits} resultados encontrados"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema BEE 3413 - Baita Desafio Complexo - Beecrowd do contest da 1ª Fase Ze">
+    <meta name="description" content="Polinômio característicoUma recorrência linear na forma: $f(n) &#x3D; a_1 \cdot f(n-1) + a_2 \cdot f(n-2) + \cdots + a_k \cdot f(n - k)$ tem o seguinte polinômio característico: $X^k &#x3D; a_1 \cdot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Resumo: Recorrências lineares">
 <meta property="og:url" content="https://pedrov3.github.io/2024/05/24/Resumo-Recorrencias-lineares/index.html">
 <meta property="og:site_name" content="...">
-<meta property="og:description" content="Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema BEE 3413 - Baita Desafio Complexo - Beecrowd do contest da 1ª Fase Ze">
+<meta property="og:description" content="Polinômio característicoUma recorrência linear na forma: $f(n) &#x3D; a_1 \cdot f(n-1) + a_2 \cdot f(n-2) + \cdots + a_k \cdot f(n - k)$ tem o seguinte polinômio característico: $X^k &#x3D; a_1 \cdot">
 <meta property="og:locale" content="pt_BR">
 <meta property="article:published_time" content="2024-05-25T02:37:02.000Z">
-<meta property="article:modified_time" content="2026-09-14T06:55:20.790Z">
+<meta property="article:modified_time" content="2026-09-14T07:21:13.854Z">
 <meta property="article:author" content="Pedro Vinicius Sousa da Silva">
 <meta name="twitter:card" content="summary">
 
@@ -143,7 +143,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">publicações</span>
         </a>
       </div>
@@ -218,7 +218,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Editado em</span>
-      <time title="Modificado em: 2026-09-14 03:55:20" itemprop="dateModified" datetime="2026-09-14T03:55:20-03:00">2026-09-14</time>
+      <time title="Modificado em: 2026-09-14 04:21:13" itemprop="dateModified" datetime="2026-09-14T04:21:13-03:00">2026-09-14</time>
     </span>
 
   
@@ -230,10 +230,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema <a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/view/3413">BEE 3413 - Baita Desafio Complexo - Beecrowd</a> do contest da <a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/origin/216">1ª Fase Zero da Maratona de Programação da SBC 2022&#x2F;2023</a>.</p>
-<span id="more"></span>
-
-<h2 id="Polinomio-caracteristico"><a href="#Polinomio-caracteristico" class="headerlink" title="Polinômio característico"></a>Polinômio característico</h2><p>Uma recorrência linear na forma:</p>
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="Polinomio-caracteristico"><a href="#Polinomio-caracteristico" class="headerlink" title="Polinômio característico"></a>Polinômio característico</h2><p>Uma recorrência linear na forma:</p>
 <p>$f(n) &#x3D; a_1 \cdot f(n-1) + a_2 \cdot f(n-2) + \cdots + a_k \cdot f(n - k)$</p>
 <p>tem o seguinte polinômio característico:</p>
 <p>$X^k &#x3D; a_1 \cdot X^{k-1} + a_2 \cdot X^{k-2} + \cdots + a_{k-1} \cdot X^1 + a_k \cdot X^0$</p>
@@ -305,6 +302,15 @@
 
         
 
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/24/Deslocamento-de-Taylor-e-Deslocamento-de-Pontos-de-Amostragem/" rel="prev" title="Deslocamento de Taylor e Deslocamento de Pontos de Amostragem">
+                  <i class="fa fa-angle-left"></i> Deslocamento de Taylor e Deslocamento de Pontos de Amostragem
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
