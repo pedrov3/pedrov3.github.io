@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pedrov3.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"monokai-sublime","dark":"monokai-sublime"},"prism":{"light":"darcula","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Pesquisando...","empty":"Não encontramos nenhum resultado para a pesquisa: ${query}","hits_time":"${hits} resultados encontrados em ${time} ms","hits":"${hits} resultados encontrados"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema BEE 3413 - Baita Desafio Complexo - Beecrowd do contest da 1ª Fase Ze">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Resumo: Recorrências lineares">
+<meta property="og:url" content="https://pedrov3.github.io/2024/05/24/Resumo-Recorrencias-lineares/index.html">
+<meta property="og:site_name" content="...">
+<meta property="og:description" content="Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema BEE 3413 - Baita Desafio Complexo - Beecrowd do contest da 1ª Fase Ze">
+<meta property="og:locale" content="pt_BR">
+<meta property="article:published_time" content="2024-05-25T02:37:02.000Z">
+<meta property="article:modified_time" content="2026-09-14T06:55:20.790Z">
+<meta property="article:author" content="Pedro Vinicius Sousa da Silva">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pedrov3.github.io/2024/05/24/Resumo-Recorrencias-lineares/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"pt-BR","comments":true,"permalink":"https://pedrov3.github.io/2024/05/24/Resumo-Recorrencias-lineares/","path":"2024/05/24/Resumo-Recorrencias-lineares/","title":"Resumo: Recorrências lineares"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Resumo: Recorrências lineares | ...</title>
+  
+
+
+
+
+
+
+
+
+  
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","display_overflow":"scroll","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-mml-chtml.js","integrity":"sha256-ihPtDDm7pTmSF9ViEsItlvsrBTsNkz0MOXMchzOwCQw="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="Pesquisar" role="button">
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="Alternar barra de navegação" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>Sobre</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Arquivos</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Índice
+        </li>
+        <li class="sidebar-nav-overview">
+          Visão geral
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Polinomio-caracteristico"><span class="nav-number">1.</span> <span class="nav-text">Polinômio característico</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Formula-fechada"><span class="nav-number">2.</span> <span class="nav-text">Fórmula fechada</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Truque-da-soma-acumulada-de-Fibonacci"><span class="nav-number">3.</span> <span class="nav-text">Truque da soma acumulada de Fibonacci</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problemas-para-praticar"><span class="nav-number">4.</span> <span class="nav-text">Problemas para praticar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solucao"><span class="nav-number">4.1.</span> <span class="nav-text">Solução:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Codigo"><span class="nav-number">4.1.1.</span> <span class="nav-text">Código</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Referencias"><span class="nav-number">5.</span> <span class="nav-text">Referências</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Pedro Vinicius Sousa da Silva</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">publicações</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pedrov3" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pedrov3" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/meu_nome" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;meu_nome" rel="noopener me" target="_blank"><i class="fab fa-telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pedroestouaqui@gmail.com" title="E-Mail → mailto:pedroestouaqui@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="pt-BR">
+    <link itemprop="mainEntityOfPage" href="https://pedrov3.github.io/2024/05/24/Resumo-Recorrencias-lineares/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Pedro Vinicius Sousa da Silva">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Resumo: Recorrências lineares | ...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Resumo: Recorrências lineares
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Postado em</span>
+
+      <time title="Criado em: 2024-05-24 23:37:02" itemprop="dateCreated datePublished" datetime="2024-05-24T23:37:02-03:00">2024-05-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Editado em</span>
+      <time title="Modificado em: 2026-09-14 03:55:20" itemprop="dateModified" datetime="2026-09-14T03:55:20-03:00">2026-09-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text&#x2F;css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Neste artigo faço um resumo de três teoremas de Matemática discreta sobre Recorrências lineares homogêneas e os aplico no problema <a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/view/3413">BEE 3413 - Baita Desafio Complexo - Beecrowd</a> do contest da <a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/origin/216">1ª Fase Zero da Maratona de Programação da SBC 2022&#x2F;2023</a>.</p>
+<span id="more"></span>
+
+<h2 id="Polinomio-caracteristico"><a href="#Polinomio-caracteristico" class="headerlink" title="Polinômio característico"></a>Polinômio característico</h2><p>Uma recorrência linear na forma:</p>
+<p>$f(n) &#x3D; a_1 \cdot f(n-1) + a_2 \cdot f(n-2) + \cdots + a_k \cdot f(n - k)$</p>
+<p>tem o seguinte polinômio característico:</p>
+<p>$X^k &#x3D; a_1 \cdot X^{k-1} + a_2 \cdot X^{k-2} + \cdots + a_{k-1} \cdot X^1 + a_k \cdot X^0$</p>
+<h2 id="Formula-fechada"><a href="#Formula-fechada" class="headerlink" title="Fórmula fechada"></a>Fórmula fechada</h2><p>Dado uma recorrência linear com polinômio característico igual a:</p>
+<p>$(X - r_1)(X - r_1)(X - r_2)(X - r_3) &#x3D; 0$</p>
+<p>tem fórmula fechada na forma:</p>
+<p>$f(n) &#x3D; c_1 \cdot r_1^n + c_2 \cdot n \cdot r_1^n + c_3 \cdot r_2^n + c_4 \cdot r_3^n $</p>
+<h2 id="Truque-da-soma-acumulada-de-Fibonacci"><a href="#Truque-da-soma-acumulada-de-Fibonacci" class="headerlink" title="Truque da soma acumulada de Fibonacci"></a>Truque da soma acumulada de Fibonacci</h2><p>Seja  $ f(n) &#x3D; \begin{cases}  n, &amp; \text{se  $n \le 1$}\\  f(n-1) + f(n-2), &amp; \text{caso contrário} \end{cases}$</p>
+<p>A partir do fato que $f(n-2) &#x3D; f(n) - f(n-1)$ é o mesmo que $f(n) &#x3D; f(n + 2) - f(n+1)$</p>
+<p>Podemos calcular $s(n) &#x3D; f(0) + f(1) + \dots + f(n)$, através da seguinte soma telescópica:</p>
+<p>$f(0) &#x3D; f(2) - f(1)$</p>
+<p>$f(1) &#x3D; f(3) - f(2)$</p>
+<p>$f(2) &#x3D; f(4) - f(3)$​</p>
+<p>​              $\cdots$</p>
+<p>$f(n-1) &#x3D; f(n+1) - f(n)$</p>
+<p>$f(n) &#x3D; f(n+2) - f(n+1)$</p>
+<p>Somando essas igualdades temos:</p>
+<p>$f(0) + f(1) + \cdots + f(n-1) + f(n) &#x3D; \Big(f(2) - f(1)\Big) + \Big(f(3) - f(2)\Big)  + \cdots + \Big( f(n+1) - f(n) \Big) + \Big( f(n+2) - f(n+1)\Big)$</p>
+<p>$s(n) &#x3D; -f(1) + f(n+2)$</p>
+<p>$s(n) &#x3D; f(n + 2) - f(1)$</p>
+<h2 id="Problemas-para-praticar"><a href="#Problemas-para-praticar" class="headerlink" title="Problemas para praticar"></a>Problemas para praticar</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://judge.beecrowd.com/pt/problems/view/3413">BEE 3413 - Baita Desafio Complexo - Beecrowd</a></li>
+</ul>
+<h3 id="Solucao"><a href="#Solucao" class="headerlink" title="Solução:"></a><strong>Solução:</strong></h3><p>Em resumo, nesse problema a parte principal de sua solução é aplicar os truques (1) e (2) ao contrário, ou seja, a partir de uma fórmula fechada encontrar a recorrência linear correspondente, uma vez que temos essa recorrência linear podemos computá-la em um ponto específico rapidamente usando exponenciação de matrizes (usando exponenciação binária) e para computar sua soma acumulada arrematamos o problema usando o truque (3). A seguir uma descrição mais detalhada.</p>
+<p>A partir do truque (2) podemos notar que $f(n)$ do problema tem o formato de uma recorrência linear igual a:</p>
+<p>$f(n) &#x3D; c_1 \cdot {\Big(\dfrac{1 + R}{2}\Big)}^n +  c_2 \cdot {\Big(\dfrac{1 - R}{2}\Big)}^n$</p>
+<p>que por sua vez tem polinômio característico igual:</p>
+<p>$\Big(X - \Big(\dfrac{1 + R}{2}\Big)\Big)\Big(X - \Big(\dfrac{1 - R}{2}\Big)\Big) &#x3D; 0$</p>
+<p>expandindo essa equação temos:</p>
+<p>$ \Big(X - \Big(\dfrac{1 + R}{2}\Big)\Big)\Big(X - \Big(\dfrac{1 - R}{2}\Big)\Big) &#x3D; X^2 - X \Big(\dfrac{1 - R}{2}\Big) - \Big(\dfrac{1 + R}{2}\Big) X  + \Big(\dfrac{1 + R}{2}\Big) \Big(\dfrac{1 - R}{2}\Big) &#x3D; $</p>
+<p>$&#x3D; X^2 - X\Big(\dfrac{1 - R + 1 + R}{2}\Big) + \dfrac{1 - R^2}{4} &#x3D; X^2 - X + \dfrac{1 - (i\cdot\sqrt{4T - 1})^2}{4} &#x3D; X^2 - X  + \dfrac{1 -(-1 \cdot (4T - 1))}{4} &#x3D; $</p>
+<p>$&#x3D; X^2 - X + T &#x3D; 0$</p>
+<p>que colocando no formato $X^2 &#x3D; X^1 - T \cdot X^0$ evidencia que podemos aplicar o truque (1) para descobrir que $f(n)$ tem a forma:</p>
+<p>$f(n) &#x3D; f(n - 1) - T \cdot f(n - 2)$</p>
+<p>Para nossa instância podemos verificar que $f(0) &#x3D; 0$ e $f(1) &#x3D; 1$, desse modo temos que $f(n)$ como descrito no enunciado é o mesmo que:</p>
+<p>$f(n) &#x3D; \begin{cases} n , &amp; \text{se } n \le 1\\ f(n - 1) - T \cdot f(n - 2), &amp; \text{caso contrário}\end{cases}$</p>
+<p>que pode ser computada através da seguinte transformação linear em $O(\log{n})$ usando exponenciação binária:</p>
+<p>$ \begin{bmatrix}<br>f(n) \\<br>f(n-1)<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br>1 &amp; -T \\<br>1 &amp; 0<br>\end{bmatrix} \begin{bmatrix}<br>f(n-1)  \\<br>f(n-2)<br>\end{bmatrix}$</p>
+<p>$ \begin{bmatrix}<br>f(n) \\<br>f(n-1)<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br>1 &amp; -T \\<br>1 &amp; 0<br>\end{bmatrix}^{n-1} \begin{bmatrix}<br>f(1)  \\<br>f(0)<br>\end{bmatrix}, \text{onde } n \ge 2$</p>
+<p>Por fim, para computar $s(n) &#x3D; f(0) + f(1) + \dots + f(n)$ podemos aplicar o truque (3) da seguinte maneira:</p>
+<p>A partir do fato que $-T \cdot f(n-2) &#x3D; f(n) - f(n-1)$ é o mesmo que $-T \cdot f(n) &#x3D; f(n + 2) - f(n+1)$</p>
+<p>Podemos encontrar $s(n)$ através da seguinte soma telescópica:</p>
+<p>$-T \cdot f(0) &#x3D; f(2) - f(1)$</p>
+<p>$-T \cdot f(1) &#x3D; f(3) - f(2)$</p>
+<p>$-T \cdot f(2) &#x3D; f(4) - f(3)$</p>
+<p>​              $\cdots$</p>
+<p>$-T \cdot f(n-1) &#x3D; f(n+1) - f(n)$</p>
+<p>$-T \cdot f(n) &#x3D; f(n+2) - f(n+1)$</p>
+<p>Somando essas igualdades temos:</p>
+<p>$-T \cdot \Big(f(0) + f(1) + \cdots + f(n-1) + f(n) \Big) &#x3D; \Big(f(2) - f(1)\Big) + \Big(f(3) - f(2)\Big)  + \cdots + \Big( f(n+1) - f(n) \Big) + \Big( f(n+2) - f(n+1)\Big)$</p>
+<p>$-T \cdot s(n) &#x3D; -f(1) + f(n+2)$</p>
+<p>$s(n) &#x3D; \dfrac{f(n + 2) - f(1)}{-T}$</p>
+<p>$\blacksquare$</p>
+<h4 id="Codigo"><a href="#Codigo" class="headerlink" title="Código"></a>Código</h4><p>A seguir o código do problema, omitindo o código da <a target="_blank" rel="noopener" href="https://github.com/pedrov3/competitive-programming-notebook/blob/main/expmatrix.cpp">exponenciação de matrizes</a>, <a target="_blank" rel="noopener" href="https://github.com/pedrov3/competitive-programming-notebook/blob/main/expbin.cpp">exponenciação binária</a> e o restante do <a target="_blank" rel="noopener" href="https://github.com/pedrov3/competitive-programming-notebook/blob/main/templates/cpp.cpp">template</a>.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>)-&gt;<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> t, m;</span><br><span class="line">    cin &gt;&gt; t &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> f = [&amp;](<span class="type">int</span> n)&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="function">Matrix <span class="title">base</span><span class="params">(&#123;&#123;<span class="number">1</span>, -t&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;&#125;)</span></span>;</span><br><span class="line">        <span class="keyword">auto</span> retval = <span class="built_in">expbin</span>(base, n - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> retval[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">auto</span> s = [&amp;](<span class="type">int</span> n)&#123;</span><br><span class="line">        <span class="comment">// inverso modular através do &#x27;Fermat&#x27;s little theorem&#x27;;</span></span><br><span class="line">        <span class="built_in">return</span> (<span class="built_in">f</span>(n + <span class="number">2</span>) - <span class="built_in">f</span>(<span class="number">1</span>)) * <span class="built_in">expbin</span>(-t, P - <span class="number">2</span>) </span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function">vi <span class="title">a</span><span class="params">(m)</span></span>;</span><br><span class="line">    cin &gt;&gt; a;</span><br><span class="line">    <span class="type">int</span> l = *<span class="built_in">max_element</span>(<span class="built_in">all</span>(a));</span><br><span class="line">    <span class="type">int</span> ans = <span class="built_in">s</span>(l);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;x: a)&#123;</span><br><span class="line">        ans -= <span class="built_in">f</span>(x);</span><br><span class="line">        ans %= P;</span><br><span class="line">        ans += P;</span><br><span class="line">        ans %= P;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Referencias"><a href="#Referencias" class="headerlink" title="Referências"></a>Referências</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://pessoal.dainf.ct.utfpr.edu.br/zatesko/icsd21.html#:~:text=AULA%206%3A%20Recorr%C3%AAncias%20lineares">Notas de aula de recorrências lineares do Profº Leandro Zatesko</a></li>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/C1uwYwjYqdE?si=5NTejm-K9_rcsE3L&t=10787">Oficina {28set,9nov}22: Upsolving da 1ª Fase Zero da Maratona de Programação da SBC - A partir de 2 hr 59 min 47 seg</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Pedro Vinicius Sousa da Silva</span>
+  </div>
+  <div class="powered-by">Feito com <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
